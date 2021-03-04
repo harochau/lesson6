@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        background: coral;
+        color: white;
+        width: 100px;
+        height: 100px;
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container{
+          width: 1000px;
+          height: 600px;
+          border: 1px solid chocolate;
+          
+          display: flex;
+          /* flex-direction: row-reverse; */
+          /* justify-content: center; */
+          /* align-items:center; */
+          /* flex-wrap: wrap; */
+          align-content: space-between;                 
+      }
+      div:nth-child(odd){
+          align-self: flex-end;
+      }
+      div:nth-child(even){
+          align-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item">Блок 1</div>
+      <div class="item">Блок 2</div>
+      <div class="item">Блок 3</div>
+      <div class="item">Блок 4</div>
+      <div class="item">Блок 5</div>
+ 
+    </div>
+    <script></script>
+  </body>
+</html>
