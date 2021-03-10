@@ -11,82 +11,141 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <div class="cards">
-      <div class="card">
-        <div class="pic"></div>
-        <div class="title">
-          <!-- <div>Тайная жизнь</div>
-          <div>домашних животных 2</div> -->
-        </div>
-        <div class="price">
-          <!-- <div>45,00 руб.</div>
-          <div>50,00 руб.</div> -->
-        </div>
-        <div class="rank">
-          <!-- <span class="material-icons">
-            star star star star_half star_border
-          </span> -->
-          <!-- <span class="material-icons">star</span>
-          <span class="material-icons">star</span>
-          <span class="material-icons">star</span>
-          <span class="material-icons">star_half</span>
-          <span class="material-icons">star_border</span> -->
-        </div>
-        <div class="order">
-          <a href="#" class="buy"
-            ><img src="images/order.jpg" alt="Купить"
-          /></a>
-        </div>
-      </div>
+    <div class="cards" >
+
     </div>
 
     <script>
       shop_items = [
         {
-          title: 'Тайная жизнь',
-          titleContinue: 'домашних животных 2',
+          title: "Тайная жизнь",
+          titleContinue: "домашних животных 2",
           price: 50,
-          currency: 'руб.',
-          file: 'images/card.jpg',
-          contentDelivery: 'images/blu-ray.png',
+          currency: "руб.",
+          file: "images/card.jpg",
+          contentDelivery: "images/blu-ray.png",
           sale: true,
           rating: 4.5,
-          order: 'images/order.png',
+          order: "images/order.png",
         },
+        {
+          title: "Том и",
+          titleContinue: "Джерри",
+          price: 50,
+          currency: "руб.",
+          file: "images/card2.jpg",
+          contentDelivery: "",
+          sale: false,
+          rating: 3.5,
+          order: "images/order.png",
+        },
+        {
+          title: "Король Лев",
+          titleContinue: "",
+          price: 30,
+          currency: "руб.",
+          file: "images/card3.jpg",
+          contentDelivery: "",
+          sale: true,
+          rating: 4.0,
+          order: "images/order.png",
+        }
       ];
+      cards_div = document.querySelectorAll(".cards")[0]
+      function createCard(id) {
+        sCard = `<div class="card" id="id${id}">
+        <div class="pic"></div>
+        <div class="title"></div>
+        <div class="price"></div>
+        <div class="rank"></div>
+        <div class="order">
+          <a href="#" class="buy"
+            ><img src="images/order.jpg" alt="Купить"
+          /></a>
+        </div>
+      </div>`;
+      cards_div.innerHTML+=sCard;
+      
+      }
+      createCard(0);
+      createCard(1);
+      createCard(2);
+      function editCard(targetCard,sourceData){
+        // console.log(targetCard);
+        let pic_div = targetCard.querySelector(".pic");
+        let str = "";
+        str+=`<img src='${sourceData.file}' alt="Катрочка товара" />`;
+      if (sourceData.sale == true) {
+        str += `<img src='images/sale.png' />`;
+      }
+      str += `<img src='${sourceData.contentDelivery}' />`;
 
-      pic_div = document.querySelectorAll('.pic')[0];
-      s = '';
-      s += `<img src='${shop_items[0].file}' alt="Катрочка товара" />`;
-      if (shop_items[0].sale == true) {
-        s += `<img src='images/sale.png' />`;
-      }
-      s += `<img src='${shop_items[0].contentDelivery}' />`;
-      console.log(s);
-      pic_div.innerHTML = s;
-      price_div = document.querySelectorAll('.price')[0];
-      if (shop_items[0].sale == true) {
-        price_div.innerHTML += `<div>${+shop_items[0].price * 0.9} ${
-          shop_items[0].currency
+        // console.log(pic_div);
+        pic_div.innerHTML = str;
+      
+        let price_div = targetCard.querySelector(".price");
+      if (sourceData.sale == true) {
+        price_div.innerHTML += `<div>${+sourceData.price * 0.9}.00 ${
+          sourceData.currency
         }</div>`;
-        price_div.innerHTML += `<div>${shop_items[0].price} ${shop_items[0].currency}</div>`;
+        price_div.innerHTML += `<div>${sourceData.price}.00 ${sourceData.currency}</div>`;
       } else {
-        price_div.innerHTML += `<div>${shop_items[0].price} ${shop_items[0].currency}</div>`;
+        price_div.innerHTML += `<div>${sourceData.price}.00 ${sourceData.currency}</div>`;
       }
-      rank_div = document.querySelectorAll('.rank')[0];
-      for (i = 1; i < shop_items[0].rating; i++) {
+      let rank_div = targetCard.querySelector(".rank");
+      for (i = 1; i < sourceData.rating; i++) {
         rank_div.innerHTML += `<span class="material-icons">star</span>`;
       }
-      if (shop_items[0].rating % Math.floor(shop_items[0].rating) == 0.5) {
+      if (sourceData.rating % Math.floor(sourceData.rating) == 0.5) {
         rank_div.innerHTML += `<span class="material-icons">star_half</span>`;
         i++;
       }
       for (i; i <= 5; i++) {
         rank_div.innerHTML += `<span class="material-icons">star_border</span>`;
       }
-      title_div = document.querySelectorAll('.title')[0];
-      title_div.innerHTML += `<div>${shop_items[0].title}</div>`;
-      title_div.innerHTML += `<div>${shop_items[0].titleContinue}</div>`;
+      let title_div = targetCard.querySelector(".title");
+      title_div.innerHTML += `<div>${sourceData.title}</div>`;
+      
+      title_div.innerHTML += `<div>${sourceData.titleContinue}</div>`;
+
+
+      }
+      editCard(document.querySelectorAll(".card")[0],shop_items[0]);
+      editCard(document.querySelectorAll(".card")[1],shop_items[1]);
+      editCard(document.querySelectorAll(".card")[2],shop_items[2]);
+
+      // pic_div = document.querySelectorAll(".pic")[0];
+      // s = "";
+      // s += `<img src='${shop_items[0].file}' alt="Катрочка товара" />`;
+      // if (shop_items[0].sale == true) {
+      //   s += `<img src='images/sale.png' />`;
+      // }
+      // s += `<img src='${shop_items[0].contentDelivery}' />`;
+      // // console.log(s);
+      // pic_div.innerHTML = s;
+      // price_div = document.querySelectorAll(".price")[0];
+      // if (shop_items[0].sale == true) {
+      //   price_div.innerHTML += `<div>${+shop_items[0].price * 0.9}.00 ${
+      //     shop_items[0].currency
+      //   }</div>`;
+      //   price_div.innerHTML += `<div>${shop_items[0].price}.00 ${shop_items[0].currency}</div>`;
+      // } else {
+      //   price_div.innerHTML += `<div>${shop_items[0].price}.00 ${shop_items[0].currency}</div>`;
+      // }
+      // rank_div = document.querySelectorAll(".rank")[0];
+      // for (i = 1; i < shop_items[0].rating; i++) {
+      //   rank_div.innerHTML += `<span class="material-icons">star</span>`;
+      // }
+      // if (shop_items[0].rating % Math.floor(shop_items[0].rating) == 0.5) {
+      //   rank_div.innerHTML += `<span class="material-icons">star_half</span>`;
+      //   i++;
+      // }
+      // for (i; i <= 5; i++) {
+      //   rank_div.innerHTML += `<span class="material-icons">star_border</span>`;
+      // }
+      // title_div = document.querySelectorAll(".title")[0];
+      // title_div.innerHTML += `<div>${shop_items[0].title}</div>`;
+      // title_div.innerHTML += `<div>${shop_items[0].titleContinue}</div>`;
     </script>
   </body>
 </html>

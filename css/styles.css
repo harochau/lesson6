@@ -7,6 +7,7 @@ body {
   font-family: 'Oswald', sans-serif;
 }
 .cards {
+  
   width: 1000px;
   height: 800px;
   margin: 0 auto;
@@ -29,13 +30,18 @@ body {
 }
 .pic {
   height: 420px;
+  width: 280px;
+}
+.pic > img:nth-child(1){
+  height: 420px;
+  width: 280px;
 }
 .pic > img:nth-child(2) {
   position: relative;
   /* z-index: 2; */
-  top: -120px;
+  top: -90px;
   /* margin-bottom: 60px; */
-  left: 10px;
+  left: 170px;
 }
 .pic > img:nth-child(3) {
   position: relative;
@@ -53,9 +59,12 @@ body {
   padding: 0;
   line-height: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-content: flex-end;
   flex-wrap: wrap;
-  align-content: space-around;
+  
+  
 }
 .price {
   width: 280px;
